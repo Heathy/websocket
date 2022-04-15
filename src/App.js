@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+const WebSocket = require('ws');
+// console.log(new WebSocket.Server())
+const Wss = new WebSocket.Server({
+  port: 6000,
+  host: 122,
+  path: "sdadadada",
+  handleProtocols: WebSocket,
+})
+console.log(Wss)
+Wss.on('connection', client => {
+  console.log("socket正在连接")
+  client.on('message', msg => {
+    console.log('客户端发送数据给服务端了: ' + msg)
+    client.send('hello socket from backend')
+  })
+}) 
